@@ -21,6 +21,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// seed the database with data
+
+using (var scope = app.Services.CreateAsyncScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BakeSaleContext>();
+    context.Database.EnsureCreated();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

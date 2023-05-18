@@ -8,5 +8,10 @@ namespace BakeSale.Repositories.Common
         public BakeSaleContext(DbContextOptions<BakeSaleContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; } = null!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new DbInitializer(modelBuilder).Seed();
+        }
     }
 }
