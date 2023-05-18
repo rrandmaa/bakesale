@@ -1,10 +1,10 @@
-﻿using BakeSale.Models.Enums;
+﻿using BakeSale.Models.Common;
+using BakeSale.Models.Enums;
 
 namespace BakeSale.Models
 {
-    public class Product
+    public class Product: UniqueEntity
     {
-        public int Id { get; set; }
         public ProductType Type { get; set; }
         public string? Name { get; set; }
         public int Quantity { get; set; }
