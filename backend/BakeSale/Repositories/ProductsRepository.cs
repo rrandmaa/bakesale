@@ -1,18 +1,21 @@
 ﻿using BakeSale.Models;
+using BakeSale.Repositories.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace BakeSale.Repositories
 {
     public class ProductsRepository : IProductsRepository
     {
-        public List<Product> GetAll()
+        private readonly BakeSaleContext _context;
+
+        public ProductsRepository(BakeSaleContext context)
         {
-            return new List<Product>
-            {
-                new Product { Id = 1 },
-                new Product { Id = 2 },
-                new Product { Id = 3 },
-                new Product { Id = 4 }
-            };
+            _context = context;
+        }
+
+        public async Task<IEnumerable<Product>> GetAllAsync()
+        {
+            return await _context.Products.ToListAsync();
         }
     }
 }

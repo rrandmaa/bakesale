@@ -19,7 +19,14 @@ namespace BakeSale.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return _repo.GetAll();
+            var products = await _repo.GetAllAsync();
+            
+            if (products is null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(products);
         }
     }
 }

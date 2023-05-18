@@ -3,6 +3,6 @@
 namespace BakeSale.Repositories
 {
     public interface IProductsRepository {
-        public List<Product> GetAll();
+        public Task<IEnumerable<Product>> GetAllAsync();
     }
 }
