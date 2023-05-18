@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BakeSale.Repositories
 {
-    public class ProductsRepository : IProductsRepository
+    public class PurchasesRepository: IPurchasesRepository
     {
         private readonly BakeSaleContext _context;
 
-        public ProductsRepository(BakeSaleContext context)
+        public PurchasesRepository(BakeSaleContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<Purchase>> GetAllAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Purchases.ToListAsync();
         }
 
-        public async Task UpdateAsync(Product entity)
+        public async Task UpdateAsync(Purchase entity)
         {
-            _context.Products.Update(entity);
+            _context.Purchases.Update(entity); 
             await _context.SaveChangesAsync();
         }
 
@@ -28,5 +28,6 @@ namespace BakeSale.Repositories
         {
             return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
     }
 }

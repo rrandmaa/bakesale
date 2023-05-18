@@ -14,6 +14,7 @@ builder.Services.AddDbContext<BakeSaleContext>(options =>
 // add repositories for dependency injection
 
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<IPurchasesRepository, PurchasesRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

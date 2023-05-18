@@ -4,7 +4,7 @@ namespace BakeSale.Models
 {
     public class Product
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public ProductType Type { get; set; }
         public string? Name { get; set; }
         public int Quantity { get; set; }
