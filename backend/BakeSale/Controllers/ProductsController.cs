@@ -38,11 +38,11 @@ namespace BakeSale.Controllers
 
             try
             {
-                await _repo.UpdateProductAsync(product);
+                await _repo.UpdateAsync(product);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_repo.ProductExists(id))
+                if (!_repo.EntityExists(id))
                 {
                     return NotFound();
                 }
