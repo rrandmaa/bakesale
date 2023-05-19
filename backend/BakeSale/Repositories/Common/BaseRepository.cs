@@ -11,7 +11,7 @@ namespace BakeSale.Repositories.Common
             _context = context;
         }
         protected abstract DbSet<T> GetDbSet();
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await GetDbSet().ToListAsync();
         }

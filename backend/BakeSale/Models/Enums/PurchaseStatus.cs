@@ -3,6 +3,6 @@
     public enum PurchaseStatus
     {
         Pending,
-        Confirmed
+        Completed
     }
 }

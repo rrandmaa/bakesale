@@ -57,6 +57,23 @@ namespace BakeSale.Repositories.Common
                     Price = 1.50m,
                 }
             );
+
+            _modelBuilder.Entity<Purchase>().HasData(
+                new Purchase
+                {
+                    Id = 1,
+                    ProductId = 1,
+                    Status = PurchaseStatus.Completed,
+                    Quantity = 5,
+                },
+                new Purchase
+                {
+                    Id = 2,
+                    ProductId = 1,
+                    Status = PurchaseStatus.Completed,
+                    Quantity = 3,
+                }
+            );
         }
     }
 }

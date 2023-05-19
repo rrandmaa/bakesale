@@ -9,5 +9,6 @@ namespace BakeSale.Models
         public string? Name { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        public IEnumerable<Purchase>? Purchases { get; set; }
     }
 }
