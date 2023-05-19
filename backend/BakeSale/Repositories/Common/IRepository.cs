@@ -8,6 +8,7 @@ namespace BakeSale.Repositories.Common
         public Task<T?> GetAsync(int id);
         public Task PostAsync(T newEntity);
         public Task UpdateAsync(T entity);
+        public Task DeleteAsync(int id);
         public bool EntityExists(int id);
     }
 }

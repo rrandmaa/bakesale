@@ -43,7 +43,6 @@ namespace BakeSale.Controllers
             return purchase;
         }
 
-
         // POST: api/Purchases
         [HttpPost]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
