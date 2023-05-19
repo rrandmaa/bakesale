@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BakeSale.Models;
 using BakeSale.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace BakeSale.Controllers
 {
@@ -30,29 +29,27 @@ namespace BakeSale.Controllers
             return Ok(products);
         }
 
-        // PUT: api/Products/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        // GET: api/Products/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            if (id != product.Id) return BadRequest();
+            var product = await _repo.GetAsync(id);
 
-            try
+            if (product == null)
             {
-                await _repo.UpdateAsync(product);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_repo.EntityExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return product;
+        }
+
+        // POST: api/Products
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            await _repo.PostAsync(product);
+
+            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
     }
 }
