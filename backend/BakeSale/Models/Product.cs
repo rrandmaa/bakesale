@@ -9,7 +9,7 @@ namespace BakeSale.Models
         public string? Name { get; set; }
         public int InitialQuantity { get; set; }
         public decimal Price { get; set; }
-        public IEnumerable<Purchase> Purchases { get; set; } = Enumerable.Empty<Purchase>();
+        public IEnumerable<Purchase> Purchases { get; set; } = new List<Purchase>();
         public int RemainingQuantity => InitialQuantity - Purchases.Sum(p => p.Quantity);
     }
 }
