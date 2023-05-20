@@ -13,6 +13,7 @@ builder.Services.AddDbContext<BakeSaleContext>(options =>
 
 // add repositories for dependency injection
 
+builder.Services.AddScoped<ISalesRepository, SalesRepository>();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<IPurchasesRepository, PurchasesRepository>();
 

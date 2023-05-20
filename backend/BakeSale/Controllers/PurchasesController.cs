@@ -39,7 +39,7 @@ namespace BakeSale.Controllers
         {
             var purchase = await _purchasesRepo.GetAsync(id);
 
-            if (purchase == null)
+            if (purchase is null)
             {
                 return NotFound();
             }

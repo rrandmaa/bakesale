@@ -35,7 +35,7 @@ namespace BakeSale.Controllers
         {
             var product = await _repo.GetAsync(id);
 
-            if (product == null)
+            if (product is null)
             {
                 return NotFound();
             }
