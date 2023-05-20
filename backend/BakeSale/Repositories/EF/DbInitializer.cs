@@ -72,6 +72,13 @@ namespace BakeSale.Repositories.Common
                     ProductId = 1,
                     Status = PurchaseStatus.Completed,
                     Quantity = 3,
+                },
+                new Purchase
+                {
+                    Id = 3,
+                    ProductId = 2,
+                    Status = PurchaseStatus.Pending,
+                    Quantity = 2,
                 }
             );
         }

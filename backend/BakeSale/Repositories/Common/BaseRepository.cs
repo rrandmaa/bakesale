@@ -26,17 +26,21 @@ namespace BakeSale.Repositories.Common
         public async Task PostAsync(T newEntity)
         {
             dbSet.Add(newEntity);
+
             await _context.SaveChangesAsync();
         }
         public async Task UpdateAsync(T entity)
         {
             dbSet.Update(entity);
+
             await _context.SaveChangesAsync();
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await dbSet.FindAsync(id) ?? throw new DataException();
+            var entity = await GetAsync(id) ?? throw new DataException();
+
             dbSet.Remove(entity);
+
             await _context.SaveChangesAsync();
         }
         public bool EntityExists(int id)
