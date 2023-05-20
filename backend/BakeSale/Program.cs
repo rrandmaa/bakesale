@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BakeSaleContext>(options =>
-    options.UseInMemoryDatabase("BakeSale")
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
 );
 
 // add repositories for dependency injection

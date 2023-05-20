@@ -51,5 +51,14 @@ namespace BakeSale.Controllers
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
+
+        // POST: api/Products/Range
+        [HttpPost("Range")]
+        public async Task<ActionResult<List<Product>>> PostProducts(List<Product> products)
+        {
+            await _repo.PostRangeAsync(products);
+
+            return Ok();
+        }
     }
 }

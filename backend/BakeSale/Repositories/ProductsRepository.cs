@@ -12,5 +12,10 @@ namespace BakeSale.Repositories
         {
             return await dbSet.Include(x => x.Purchases).ToListAsync();
         }
+        public async Task PostRangeAsync(List<Product> products)
+        {
+            dbSet.AddRange(products);
+            await SaveChangesAsync();
+        }
     }
 }

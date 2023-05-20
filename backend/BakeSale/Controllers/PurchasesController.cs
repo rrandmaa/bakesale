@@ -64,7 +64,7 @@ namespace BakeSale.Controllers
         }
 
         // POST: api/Purchases/5/confirm
-        [HttpPost("{id}/confirm")]
+        [HttpPost("{id}/Confirm")]
         public async Task<ActionResult> ConfirmPurchase(int id)
         {
             try
@@ -80,7 +80,7 @@ namespace BakeSale.Controllers
         }
 
         // POST: api/Purchases/5/cancel
-        [HttpPost("{id}/cancel")]
+        [HttpPost("{id}/Cancel")]
         public async Task<ActionResult> CancelPurchase(int id)
         {
             try

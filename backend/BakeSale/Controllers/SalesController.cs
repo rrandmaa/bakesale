@@ -54,7 +54,7 @@ namespace BakeSale.Controllers
         }
 
         // POST: api/Sales/5/finish
-        [HttpPost("{id}/finish")]
+        [HttpPost("{id}/Finish")]
         public async Task<ActionResult> FinishSale(int id)
         {
             try
