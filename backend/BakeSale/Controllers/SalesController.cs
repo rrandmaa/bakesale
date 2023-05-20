@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BakeSale.Models;
 using BakeSale.Repositories;
+using System.Data;
 
 namespace BakeSale.Controllers
 {
@@ -50,6 +51,22 @@ namespace BakeSale.Controllers
             await _repo.PostAsync(sale);
 
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
+        }
+
+        // POST: api/Sales/5/finish
+        [HttpPost("{id}/finish")]
+        public async Task<ActionResult> FinishSale(int id)
+        {
+            try
+            {
+                await _repo.FinishSale(id);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }

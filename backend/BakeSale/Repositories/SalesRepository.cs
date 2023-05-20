@@ -1,6 +1,8 @@
 ﻿using BakeSale.Models;
+using BakeSale.Models.Enums;
 using BakeSale.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace BakeSale.Repositories
 {
@@ -14,6 +16,16 @@ namespace BakeSale.Repositories
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Purchases)
                 .ToListAsync();
+        }
+        public async Task FinishSale(int id)
+        {
+            Sale sale = await GetAsync(id) ?? throw new DataException();
+
+            if (sale.Status is not SaleStatus.Active) throw new DataException();
+
+            sale.Status = SaleStatus.Finished;
+
+            await UpdateAsync(sale);
         }
     }
 }

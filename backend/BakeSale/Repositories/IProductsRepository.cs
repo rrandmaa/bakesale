@@ -3,5 +3,5 @@ using BakeSale.Repositories.Common;
 
 namespace BakeSale.Repositories
 {
-    public interface IProductsRepository: IRepository<Product> {}
+    public interface IProductsRepository: IRepository<Product> { }
 }

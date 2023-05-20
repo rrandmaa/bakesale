@@ -3,6 +3,6 @@
     public enum SaleStatus
     {
         Active,
-        Completed
+        Finished
     }
 }

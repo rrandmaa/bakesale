@@ -70,7 +70,8 @@ namespace BakeSale.Controllers
             try
             {
                 await _purchasesRepo.ConfirmPurchase(id);
-            } catch (DataException)
+            } 
+            catch (DataException)
             {
                 return BadRequest();
             }
