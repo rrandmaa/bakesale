@@ -8,10 +8,19 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - '127.0.0.1:5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
-
+  backend:
+    image: ${DOCKER_REGISTRY-}bakesale-backend
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: BakeSale/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - '127.0.0.1:8080:80'
 volumes:
   db:
     driver: local
