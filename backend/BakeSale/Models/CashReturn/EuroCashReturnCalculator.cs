@@ -23,22 +23,18 @@
         public static List<CashReturnResponseLine> FindReturnCurrencyNotes(decimal inputAmount)
         {
             int noteAndCoinCount = euroNotesAndCoins.Length;
-            int[] noteAndCoinCounter = new int[noteAndCoinCount];
-
-            for (int i = 0; i < noteAndCoinCount; i++)
-            {
-                if (inputAmount > euroNotesAndCoins[i])
-                {
-                    noteAndCoinCounter[i] = (int)Math.Floor(inputAmount / euroNotesAndCoins[i]);
-                    inputAmount %= euroNotesAndCoins[i];
-                }
-            }
-
             var output = new List<CashReturnResponseLine>();
 
             for (int i = 0; i < noteAndCoinCount; i++)
             {
-                output.Add(new CashReturnResponseLine(euroNotesAndCoins[i], noteAndCoinCounter[i]));
+                if (inputAmount >= euroNotesAndCoins[i])
+                {
+                    output.Add(new CashReturnResponseLine(
+                        euroNotesAndCoins[i],
+                        (int)Math.Floor(inputAmount / euroNotesAndCoins[i])));
+
+                    inputAmount %= euroNotesAndCoins[i];
+                }
             }
 
             return output;
