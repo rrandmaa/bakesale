@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gwOD1XTtZDavd+hpXZV2lxtb4MzvkaQSi0frqnMyx2RcQLBOkObYQP0OtNVecvVb85SPhhlpe1jxpJ/baR4vUA==",
+  "dgSpecHash": "mgDuV0UQMba/TWOp0tAbBDf68aLFVSaAz49VHuyRmzhdb4Msrth4FPvKztMmtr/wQ1lEzNJ/iq+4AKZgPIFd+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\raine\\source\\repos\\bakesale\\backend\\BakeSale\\BakeSale.csproj",
   "expectedPackageFiles": [
@@ -64,6 +64,7 @@
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\raine\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.visualstudio.debugger.contracts\\17.2.0\\microsoft.visualstudio.debugger.contracts.17.2.0.nupkg.sha512",
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\6.0.13\\microsoft.visualstudio.web.codegeneration.6.0.13.nupkg.sha512",
     "C:\\Users\\raine\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\6.0.13\\microsoft.visualstudio.web.codegeneration.core.6.0.13.nupkg.sha512",
