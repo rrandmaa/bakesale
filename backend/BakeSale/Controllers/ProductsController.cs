@@ -8,18 +8,20 @@ namespace BakeSale.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductsRepository _repo;
+        private readonly IProductsRepository _productsRepo;
+        private readonly ISalesRepository _salesRepo;
 
-        public ProductsController(IProductsRepository repo)
+        public ProductsController(IProductsRepository repo, ISalesRepository salesRepo)
         {
-            _repo = repo;
+            _productsRepo = repo;
+            _salesRepo = salesRepo;
         }
 
         // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products = await _repo.GetAllAsync();
+            var products = await _productsRepo.GetAllAsync();
             
             if (products is null)
             {
@@ -33,7 +35,7 @@ namespace BakeSale.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _repo.GetAsync(id);
+            var product = await _productsRepo.GetAsync(id);
 
             if (product is null)
             {
@@ -47,7 +49,12 @@ namespace BakeSale.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            await _repo.PostAsync(product);
+            if (!_salesRepo.EntityExists(product.SaleId))
+            {
+                return BadRequest();
+            }
+
+            await _productsRepo.PostAsync(product);
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
@@ -56,7 +63,9 @@ namespace BakeSale.Controllers
         [HttpPost("Range")]
         public async Task<ActionResult<List<Product>>> PostProducts(List<Product> products)
         {
-            await _repo.PostRangeAsync(products);
+            //TODO: add range posting validation
+
+            await _productsRepo.PostRangeAsync(products);
 
             return Ok();
         }
