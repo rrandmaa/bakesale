@@ -7,9 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BakeSaleContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
-);
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<BakeSaleContext>(options =>
+        options.UseInMemoryDatabase("BakeSale")
+    );
+}
+else
+{
+    builder.Services.AddDbContext<BakeSaleContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
+    );
+}
 
 // add repositories for dependency injection
 
