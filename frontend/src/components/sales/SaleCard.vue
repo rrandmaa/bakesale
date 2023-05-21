@@ -1,16 +1,16 @@
 <template>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header cstm-primary-light">
             <h2>{{ sale?.name }}</h2>
         </div>
-        <div class="card-body cstm-secondary-light">
-            {{ sale?.status }}
+        <div class="card-body cstm-secondary-light text-center">
+            {{ SaleStatus[sale?.status] }}
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import type { Sale } from '@/interfaces/sale';
+import { SaleStatus, type Sale } from '@/interfaces/sale';
 import type { PropType } from 'vue';
 
 export default {
@@ -18,6 +18,11 @@ export default {
         sale: {
             type: Object as PropType<Sale>,
             required: true,
+        }
+    },
+    setup() {
+        return {
+            SaleStatus,
         }
     }
 }
