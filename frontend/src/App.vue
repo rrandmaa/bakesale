@@ -3,11 +3,9 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
-
-  </header>
-
-  <RouterView />
+  <body class="mt-3">
+    <RouterView />
+  </body>
 </template>
 
 <style scoped>
