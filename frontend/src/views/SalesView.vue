@@ -4,8 +4,10 @@ import SalesContainer from '@/components/sales/SalesContainer.vue';
 </script>
 
 <template>
-    <div class="container">
-        <PageHeader title="Sales" />
-        <SalesContainer />
-    </div>
+    <Suspense>
+        <div class="container">
+            <PageHeader title="Sales" />
+            <SalesContainer />
+        </div>
+    </Suspense>
 </template>
