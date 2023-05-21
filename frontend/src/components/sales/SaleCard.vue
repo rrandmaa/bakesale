@@ -27,3 +27,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.card-body {
+    border-radius: 20%
+}
+</style>
