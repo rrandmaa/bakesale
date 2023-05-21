@@ -1,5 +1,18 @@
 :root {
-  --bs-body-bg: #424242;
+  --bs-body-bg: #2c3333;
   --bs-body-color: white;
 }
 
+.cstm-secondary-dark {
+  background-color: #395b64;
+}
+
+.cstm-primary-light {
+  background-color: #a5c9ca;
+  color: #2c3333;
+}
+
+.cstm-secondary-light {
+  background-color: #e7f6f2;
+  color: #2c3333;
+}
