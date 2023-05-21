@@ -11,13 +11,12 @@
 <script lang="ts">
 import type { Sale } from '@/interfaces/sale';
 import SaleCard from './SaleCard.vue';
+import { getSales } from '@/api/sales.api';
 
 
 export default {
     async setup() {
-
-        const response = await fetch("http://localhost:8080/api/Sales");
-        const sales: Sale[] = await response.json();
+        const sales: Sale[] = await getSales();
 
         return {
             sales,
