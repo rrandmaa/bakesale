@@ -4,7 +4,8 @@
             <h2>{{ sale?.name }}</h2>
         </div>
         <div class="card-body cstm-secondary-light text-center">
-            {{ SaleStatus[sale?.status] }}
+            <p>{{ SaleStatus[sale?.status] }}</p>
+            <a href="#">Go to sale</a>
         </div>
     </div>
 </template>
@@ -30,6 +31,6 @@ export default {
 
 <style scoped>
 .card-body {
-    border-radius: 20%
+    border-radius: 5%
 }
 </style>
