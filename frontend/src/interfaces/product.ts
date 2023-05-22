@@ -1,13 +1,13 @@
 export enum ProductType {
-    Edible,
-    SecondHand
+  Edible,
+  SecondHand
 }
 
 export interface Product {
-    name: string;
-    type: ProductType;
-    saleId: number;
-    initialQuantity: number;
-    price: number;
-    remainingQuantity: number;
+  name: string;
+  type: ProductType;
+  saleId: number;
+  initialQuantity: number;
+  price: number;
+  remainingQuantity: number;
 }
