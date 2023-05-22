@@ -4,13 +4,13 @@ import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
 
 export const useSalesStore = defineStore('sales', () => {
-    const sales = ref<Sale[]>([]);
+  const sales = ref<Sale[]>([]);
 
-    async function fetchSales() {
-        sales.value = await getSales();
-    }
+  async function fetchSales() {
+    sales.value = await getSales();
+  }
 
-    onMounted(async () => await fetchSales());
+  onMounted(async () => await fetchSales());
 
-    return { sales }
+  return { sales };
 });

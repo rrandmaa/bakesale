@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import PageHeader from '@/components/common/PageHeader.vue';
+import NewSaleButton from '@/components/sales/NewSaleButton.vue';
 import SalesContainer from '@/components/sales/SalesContainer.vue';
 </script>
 
 <template>
   <Suspense>
     <div class="container">
-      <PageHeader title="Sales" />
+      <PageHeader title="Manage Sales" />
       <SalesContainer />
+      <NewSaleButton />
     </div>
   </Suspense>
 </template>
