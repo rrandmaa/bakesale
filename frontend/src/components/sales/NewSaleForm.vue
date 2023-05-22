@@ -19,7 +19,9 @@
                 <tr class="text-center" v-for="(product, i) in defaultProducts" v-bind:key="i">
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
-                    <td>{{ product.initialQuantity }}</td>
+                    <td>
+                        <input type="number" class="form-control" v-model="product.initialQuantity" />
+                    </td>
                 </tr>
             </tbody>
         </table>
