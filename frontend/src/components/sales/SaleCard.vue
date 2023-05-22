@@ -1,6 +1,6 @@
 <template>
   <div class="card mb-3">
-    <div class="card-header cstm-primary-light">
+    <div class="card-header cstm-primary-light text-center">
       <h2>{{ sale?.name }}</h2>
     </div>
     <div class="card-body cstm-secondary-light text-center">
@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  min-height: 9rem;
+  width: 15rem;
+}
 .card-body {
   border-radius: 5%;
 }
