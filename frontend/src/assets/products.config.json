@@ -1,0 +1,56 @@
+[
+  {
+    "type": 0,
+    "name": "Brownie",
+    "initialQuantity": 48,
+    "price": 0.65
+  },
+  {
+    "type": 0,
+    "name": "Muffin",
+    "initialQuantity": 36,
+    "price": 1.00
+  },
+  {
+    "type": 0,
+    "name": "Cake Pop",
+    "initialQuantity": 24,
+    "price": 1.35
+  },
+  {
+    "type": 0,
+    "name": "Apple Tart",
+    "initialQuantity": 60,
+    "price": 1.50
+  },
+  {
+    "type": 0,
+    "name": "Water",
+    "initialQuantity": 60,
+    "price": 1.50
+  },
+  {
+    "type": 1,
+    "name": "Shirt",
+    "initialQuantity": null,
+    "price": 2.00
+  },
+  {
+    "type": 1,
+    "name": "Pants",
+    "initialQuantity": null,
+    "price": 3.00
+  },
+  {
+    "type": 1,
+    "name": "Jacket",
+    "initialQuantity": null,
+    "price": 4.00
+  },
+  {
+    "type": 1,
+    "name": "Toy",
+    "initialQuantity": null,
+    "price": 1.00
+  }
+]
