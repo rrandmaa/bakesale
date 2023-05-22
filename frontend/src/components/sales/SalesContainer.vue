@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <div class="row row-cols-auto">
-      <div v-for="sale in sales" v-bind:key="sale.id" class="col">
+      <div v-for="sale in salesStore.sales" v-bind:key="sale.id" class="col">
         <SaleCard :sale="sale" />
       </div>
     </div>
@@ -9,16 +9,15 @@
 </template>
 
 <script lang="ts">
-import type { Sale } from '@/interfaces/sale';
 import SaleCard from './SaleCard.vue';
-import { getSales } from '@/api/sales.api';
+import { useSalesStore } from '@/stores/sales';
 
 export default {
   async setup() {
-    const sales: Sale[] = await getSales();
-
+    const salesStore = useSalesStore();
+    
     return {
-      sales
+      salesStore
     };
   },
   components: { SaleCard }
