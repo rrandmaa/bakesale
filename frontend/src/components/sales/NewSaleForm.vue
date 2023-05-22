@@ -6,11 +6,23 @@
                 <input type="text" class="form-control" id="saleName" placeholder="Enter sale name" v-model="saleName">
             </div>
         </div>
-        <div class="form-group row text-center mt-5" v-for="(product, i) in defaultProducts" v-bind:key="i">
-            {{ product.name }}
-            {{ product.price }}
-            {{ product.initialQuantity }}
-        </div>
+        <div class="row mt-5"><h4>Products</h4></div>
+        <table class="table table-bordered table-responsive mt-2">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity in stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" v-for="(product, i) in defaultProducts" v-bind:key="i">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.initialQuantity }}</td>
+                </tr>
+            </tbody>
+        </table>
         <div class="form-group row text-center mt-5">
             <div class="col sm-2">
                 <button type="button" class="btn btn-primary" v-on:click="submitAddSaleForm">Submit</button>
@@ -35,8 +47,6 @@ export default {
 
         const saleName = ref<String>();
         const defaultProducts = ref<Product[]>(productsConfig as Product[]);
-
-        console.log(defaultProducts.value);
 
         const submitAddSaleForm = async () => {
             const saleToAdd = { name: saleName.value } as Sale;
