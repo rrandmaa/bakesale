@@ -26,12 +26,12 @@ export default {
     const router = useRouter();
 
     const routeToSaleHome = () => {
-      router.push("/sale/" + props.sale.id)
-    }
+      router.push(`/sale/${props.sale.id}`);
+    };
 
     return {
       SaleStatus,
-      routeToSaleHome,
+      routeToSaleHome
     };
   }
 };
@@ -43,7 +43,7 @@ export default {
   width: 15.5rem;
 }
 .card-header {
-  height: 5rem
+  height: 5rem;
 }
 .card-body {
   border-radius: 5%;

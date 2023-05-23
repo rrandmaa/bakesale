@@ -4,8 +4,8 @@ import NewSaleForm from '@/components/sales/NewSaleForm.vue';
 </script>
 
 <template>
-    <div class="container">
-        <PageHeader title="Register new sale" />
-        <NewSaleForm />
-    </div>
+  <div class="container">
+    <PageHeader title="Register new sale" />
+    <NewSaleForm />
+  </div>
 </template>

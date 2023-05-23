@@ -9,8 +9,8 @@ export const getSales = async (): Promise<Sale[]> => {
 
 export const getSale = async (id: number): Promise<Sale> => {
   return await get<Sale>(SALES_PATH, id);
-}
+};
 
 export const postSale = async (sale: Sale): Promise<Sale> => {
   return await post<Sale>(SALES_PATH, sale);
-}
+};

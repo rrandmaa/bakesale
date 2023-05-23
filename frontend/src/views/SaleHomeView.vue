@@ -3,10 +3,9 @@ import SaleHome from '@/components/sales/SaleHome.vue';
 </script>
 
 <template>
-    <Suspense>
-        <div class="container">
-            <SaleHome />
-        </div>
-    </Suspense>
+  <Suspense>
+    <div class="container">
+      <SaleHome />
+    </div>
+  </Suspense>
 </template>
-

@@ -9,7 +9,7 @@
     "type": 0,
     "name": "Muffin",
     "initialQuantity": 36,
-    "price": 1.00
+    "price": 1.0
   },
   {
     "type": 0,
@@ -21,36 +21,36 @@
     "type": 0,
     "name": "Apple Tart",
     "initialQuantity": 60,
-    "price": 1.50
+    "price": 1.5
   },
   {
     "type": 0,
     "name": "Water",
     "initialQuantity": 60,
-    "price": 1.50
+    "price": 1.5
   },
   {
     "type": 1,
     "name": "Shirt",
     "initialQuantity": null,
-    "price": 2.00
+    "price": 2.0
   },
   {
     "type": 1,
     "name": "Pants",
     "initialQuantity": null,
-    "price": 3.00
+    "price": 3.0
   },
   {
     "type": 1,
     "name": "Jacket",
     "initialQuantity": null,
-    "price": 4.00
+    "price": 4.0
   },
   {
     "type": 1,
     "name": "Toy",
     "initialQuantity": null,
-    "price": 1.00
+    "price": 1.0
   }
 ]
