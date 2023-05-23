@@ -54,7 +54,7 @@ export default {
 
         const submitAddSaleForm = async () => {
             const saleToAdd = { name: saleName.value, products: defaultProducts.value } as Sale;
-            //await salesStore.addSale(saleToAdd);
+            await salesStore.addSale(saleToAdd);
             router.push("/");
         }
 
