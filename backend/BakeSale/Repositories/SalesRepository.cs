@@ -14,14 +14,14 @@ namespace BakeSale.Repositories
         {
             return await dbSet
                 .Include(x => x.Products)
-                .ThenInclude(x => x.Purchases)
+                .ThenInclude(x => x.PurchasesLines)
                 .ToListAsync();
         }
         public override async Task<Sale?> GetAsync(int id)
         {
             return await dbSet
                 .Include(x => x.Products)
-                .ThenInclude(x => x.Purchases)
+                .ThenInclude(x => x.PurchasesLines)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task FinishSale(int id)

@@ -10,7 +10,7 @@ namespace BakeSale.Repositories
         protected override DbSet<Product> GetDbSet(BakeSaleContext context) => context.Products;
         public async override Task<IEnumerable<Product>> GetAllAsync()
         {
-            return await dbSet.Include(x => x.Purchases).ToListAsync();
+            return await dbSet.Include(x => x.PurchasesLines).ToListAsync();
         }
         public async Task PostRangeAsync(IEnumerable<Product> products)
         {
