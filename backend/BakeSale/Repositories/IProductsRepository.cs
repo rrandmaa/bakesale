@@ -5,6 +5,6 @@ namespace BakeSale.Repositories
 {
     public interface IProductsRepository: IRepository<Product>
     {
-        public Task PostRangeAsync(List<Product> products);
+        public Task PostRangeAsync(IEnumerable<Product> products);
     }
 }

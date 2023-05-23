@@ -12,7 +12,7 @@ namespace BakeSale.Repositories
         {
             return await dbSet.Include(x => x.Purchases).ToListAsync();
         }
-        public async Task PostRangeAsync(List<Product> products)
+        public async Task PostRangeAsync(IEnumerable<Product> products)
         {
             dbSet.AddRange(products);
             await SaveChangesAsync();
