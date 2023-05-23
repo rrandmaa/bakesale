@@ -4,6 +4,7 @@ export enum ProductType {
 }
 
 export interface Product {
+  id: number;
   name: string;
   type: ProductType;
   saleId: number;
