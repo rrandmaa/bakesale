@@ -10,12 +10,19 @@ namespace BakeSale.Repositories
     {
         public SalesRepository(BakeSaleContext context) : base(context){ }
         protected override DbSet<Sale> GetDbSet(BakeSaleContext context) => context.Sales;
-        public async override Task<IEnumerable<Sale>> GetAllAsync()
+        public override async Task<IEnumerable<Sale>> GetAllAsync()
         {
             return await dbSet
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Purchases)
                 .ToListAsync();
+        }
+        public override async Task<Sale?> GetAsync(int id)
+        {
+            return await dbSet
+                .Include(x => x.Products)
+                .ThenInclude(x => x.Purchases)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task FinishSale(int id)
         {

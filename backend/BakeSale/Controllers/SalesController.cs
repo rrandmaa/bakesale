@@ -9,20 +9,18 @@ namespace BakeSale.Controllers
     [ApiController]
     public class SalesController : ControllerBase
     {
-        private readonly ISalesRepository _salesRepo;
-        private readonly IProductsRepository _productsRepo;
+        private readonly ISalesRepository _repo;
 
-        public SalesController(ISalesRepository salesRepo, IProductsRepository productsRepo)
+        public SalesController(ISalesRepository repo)
         {
-            _salesRepo = salesRepo;
-            _productsRepo = productsRepo;
+            _repo = repo;
         }
 
         // GET: api/Sales
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSales()
         {
-            var sales = await _salesRepo.GetAllAsync();
+            var sales = await _repo.GetAllAsync();
 
             if (sales is null)
             {
@@ -36,7 +34,7 @@ namespace BakeSale.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
-            var sale = await _salesRepo.GetAsync(id);
+            var sale = await _repo.GetAsync(id);
 
             if (sale is null)
             {
@@ -50,9 +48,7 @@ namespace BakeSale.Controllers
         [HttpPost]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         { 
-            await _salesRepo.PostAsync(sale);
-
-            await _productsRepo.PostRangeAsync(sale.Products);
+            await _repo.PostAsync(sale);
 
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
         }
@@ -63,7 +59,7 @@ namespace BakeSale.Controllers
         {
             try
             {
-                await _salesRepo.FinishSale(id);
+                await _repo.FinishSale(id);
             }
             catch (DataException)
             {

@@ -19,7 +19,7 @@ namespace BakeSale.Repositories.Common
         {
             return await dbSet.ToListAsync();
         }
-        public async Task<T?> GetAsync(int id)
+        public virtual async Task<T?> GetAsync(int id)
         {
             return await dbSet.FindAsync(id);
         }
