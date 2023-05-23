@@ -7,6 +7,11 @@
       </div>
     </div>
   </div>
+  <span class="row fixed-bottom text-center">
+    <div class="container border bg-primary text-light">
+      {{ totalPrice.toFixed(2) }}
+    </div>
+  </span>
 </template>
 
 <script lang="ts">
@@ -42,6 +47,7 @@ export default {
     return {
       sale,
       purchaseLines,
+      totalPrice,
       incrementPurchaseLineQuantity,
     };
   },
