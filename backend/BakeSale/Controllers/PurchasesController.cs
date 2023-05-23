@@ -51,7 +51,7 @@ namespace BakeSale.Controllers
         [HttpPost]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
         {
-            if (!_productsRepo.EntityExists(purchase.ProductId))
+            if (purchase.PurchaseLines.Any(x => !_productsRepo.EntityExists(x.ProductId)))
             {
                 return BadRequest();
             }

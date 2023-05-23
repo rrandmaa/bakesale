@@ -76,30 +76,24 @@ namespace BakeSale.Repositories.Common
                 new Purchase
                 {
                     Id = 1,
-                    ProductId = 1,
                     Status = PurchaseStatus.Completed,
-                    Quantity = 5,
+                }
+            );
+
+            _modelBuilder.Entity<PurchaseLine>().HasData(
+                new PurchaseLine
+                {
+                    Id = 1,
+                    PurchaseId = 1,
+                    ProductId = 1,
+                    Quantity = 8,
                 },
-                new Purchase
+                new PurchaseLine
                 {
                     Id = 2,
-                    ProductId = 1,
-                    Status = PurchaseStatus.Completed,
-                    Quantity = 3,
-                },
-                new Purchase
-                {
-                    Id = 3,
+                    PurchaseId = 1,
                     ProductId = 2,
-                    Status = PurchaseStatus.Pending,
-                    Quantity = 2,
-                },
-                new Purchase
-                {
-                    Id = 4,
-                    ProductId = 2,
-                    Status = PurchaseStatus.Pending,
-                    Quantity = 10,
+                    Quantity = 12,
                 }
             );
         }

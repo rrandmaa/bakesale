@@ -9,6 +9,7 @@ namespace BakeSale.Repositories.Common
         public DbSet<Sale> Sales { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Purchase> Purchases { get; set; } = null!;
+        public DbSet<PurchaseLine> PurchaseLines { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
