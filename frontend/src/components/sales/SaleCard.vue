@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-3">
+  <div class="card shadow mb-3">
     <div class="card-header cstm-primary-light text-center">
       <h3>{{ sale?.name }}</h3>
     </div>

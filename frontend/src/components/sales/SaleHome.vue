@@ -1,7 +1,7 @@
 <template>
   <PageHeader :title="sale.name" />
   <div class="container text-center mt-5">
-    <button role="button" class="btn btn-primary" v-on:click="routeToNewOrder">
+    <button role="button" class="btn btn-primary shadow" v-on:click="routeToNewOrder">
       Start new order
     </button>
   </div>
