@@ -1,12 +1,15 @@
 <template>
-    <form class="container-fluid mt-4">
+    <form class="container-fluid mt-4" v-on:submit.prevent="submitAddSaleForm">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-nowrap" for="saleName">Sale name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="saleName" placeholder="Enter sale name" v-model="saleName">
+                <input type="text" class="form-control" id="saleName" placeholder="Enter sale name" required
+                    v-model="saleName">
             </div>
         </div>
-        <div class="row mt-5"><h4>Products</h4></div>
+        <div class="row mt-5">
+            <h4>Products</h4>
+        </div>
         <table class="table table-bordered table-responsive mt-2">
             <thead>
                 <tr class="text-center">
@@ -20,17 +23,16 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
                     <td>
-                        <input type="number" class="form-control" v-model="product.initialQuantity" />
+                        <input type="number" class="form-control" required v-model="product.initialQuantity" />
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="form-group row text-center mt-5">
             <div class="col sm-2">
-                <button type="button" class="btn btn-primary" v-on:click="submitAddSaleForm">Submit</button>
+                <button type="submit" class="btn btn-primary">Register sale</button>
             </div>
         </div>
-
     </form>
 </template>
 
@@ -51,8 +53,8 @@ export default {
         const defaultProducts = ref<Product[]>(productsConfig as Product[]);
 
         const submitAddSaleForm = async () => {
-            const saleToAdd = { name: saleName.value } as Sale;
-            await salesStore.addSale(saleToAdd);
+            const saleToAdd = { name: saleName.value, products: defaultProducts.value } as Sale;
+            //await salesStore.addSale(saleToAdd);
             router.push("/");
         }
 
