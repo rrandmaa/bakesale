@@ -1,4 +1,4 @@
-import { getSales, postSale } from '@/api/sales.api';
+import { getSale, getSales, postSale } from '@/api/sales.api';
 import type { Sale } from '@/interfaces/sale';
 import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
@@ -10,6 +10,11 @@ export const useSalesStore = defineStore('sales', () => {
     sales.value = await getSales();
   }
 
+  async function refreshSaleData(id: number) {
+    const sale = await getSale(id);
+    return sale;
+  }
+
   async function addSale(saleToAdd: Sale) {
     const newSale = await postSale(saleToAdd);
     if (newSale) sales.value.push(newSale);
@@ -18,5 +23,5 @@ export const useSalesStore = defineStore('sales', () => {
 
   onMounted(async () => await fetchSales());
 
-  return { sales, addSale };
+  return { sales, refreshSaleData, addSale };
 });

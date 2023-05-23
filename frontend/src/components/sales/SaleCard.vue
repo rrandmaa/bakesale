@@ -5,7 +5,7 @@
     </div>
     <div class="card-body cstm-secondary-light text-center">
       <p>{{ SaleStatus[sale?.status] }}</p>
-      <a href="#">Go to sale</a>
+      <a href="" v-on:click="routeToSaleHome">Go to sale</a>
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script lang="ts">
 import { SaleStatus, type Sale } from '@/interfaces/sale';
 import type { PropType } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   props: {
@@ -21,9 +22,16 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    const router = useRouter();
+
+    const routeToSaleHome = () => {
+      router.push("/sale/" + props.sale.id)
+    }
+
     return {
-      SaleStatus
+      SaleStatus,
+      routeToSaleHome,
     };
   }
 };
@@ -33,6 +41,9 @@ export default {
 .card {
   min-height: 9rem;
   width: 15.5rem;
+}
+.card-header {
+  height: 5rem
 }
 .card-body {
   border-radius: 5%;
