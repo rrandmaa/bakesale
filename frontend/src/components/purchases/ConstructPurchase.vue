@@ -62,7 +62,7 @@ export default {
       await salesStore.refreshSaleData(Number(route.params.id));
     }
 
-    refreshSaleData();
+    await refreshSaleData();
 
     return {
       MODAL_TAG_ID,
