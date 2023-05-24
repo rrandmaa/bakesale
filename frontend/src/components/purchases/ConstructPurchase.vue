@@ -1,7 +1,7 @@
 <template>
   <div class="container product-cards-container mt-4">
     <div class="row row-cols-auto justify-content-center">
-      <div v-for="(product, i) in sale.products" v-bind:key="i" class="col">
+      <div v-for="(product, i) in sale?.products" v-bind:key="i" class="col">
         <ProductCard :product="product" :purchase-line="purchaseLines[i]"
           v-on:increment="() => incrementPurchaseLineQuantity(i, product.id)" />
       </div>
@@ -14,10 +14,11 @@
       </div>
       <br />
       <button class="btn btn-light shadow mx-2" v-on:click="clearPurchaseLines">Reset</button>
-      <button class="btn btn-success shadow mx-2" data-bs-toggle="modal" :data-bs-target="`#${MODAL_TAG_ID}`">Checkout</button>
+      <button class="btn btn-success shadow mx-2" data-bs-toggle="modal" :data-bs-target="`#${MODAL_TAG_ID}`"
+        v-on:click="refreshSaleData">Checkout</button>
     </div>
   </span>
-  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines"/>
+  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines" />
 </template>
 
 <script lang="ts">
@@ -35,15 +36,15 @@ export default {
 
     const route = useRoute();
     const salesStore = useSalesStore();
-    const sale = await salesStore.refreshSaleData(Number(route.params.id));
-    const purchaseLines = ref<PurchaseLine[]>(new Array<PurchaseLine>(sale.products.length));
-    
+    const sale = computed(() => salesStore.sales.find(x => x.id === Number(route.params.id)));
+    const purchaseLines = ref<PurchaseLine[]>(new Array<PurchaseLine>(sale.value?.products.length ?? 0));
+
     const totalPrice = computed(() => purchaseLines.value.reduce((sum, line) => {
       return sum + (line.quantity * getProductPrice(line.productId))
     }, 0));
 
     const getProductPrice = (id: number) => {
-      return sale.products.find(x => x.id === id)?.price ?? 0;
+      return sale?.value?.products.find(x => x.id === id)?.price ?? 0;
     }
 
     const incrementPurchaseLineQuantity = (index: number, productId: number) => {
@@ -54,8 +55,14 @@ export default {
     }
 
     const clearPurchaseLines = () => {
-      purchaseLines.value = new Array<PurchaseLine>(sale.products.length);
+      purchaseLines.value = new Array<PurchaseLine>(sale.value?.products.length ?? 0);
     }
+
+    const refreshSaleData = async () => {
+      await salesStore.refreshSaleData(Number(route.params.id));
+    }
+
+    refreshSaleData();
 
     return {
       MODAL_TAG_ID,
@@ -64,6 +71,7 @@ export default {
       totalPrice,
       incrementPurchaseLineQuantity,
       clearPurchaseLines,
+      refreshSaleData,
     };
   },
 };

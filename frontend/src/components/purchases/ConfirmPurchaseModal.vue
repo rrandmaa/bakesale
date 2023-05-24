@@ -57,7 +57,7 @@ export default {
     async setup(props) {
         const route = useRoute();
         const salesStore = useSalesStore();
-        const sale = await salesStore.refreshSaleData(Number(route.params.id));
+        const sale = computed(() => salesStore.sales.find(x => x.id === Number(route.params.id)));
 
         const purchaseLinesWithContent = computed<PurchaseLine[]>(() => props.purchaseLines.filter(x => x.productId));
 
@@ -70,12 +70,14 @@ export default {
         }
 
         const getProductName = (id: number) => {
-            return sale.products.find(x => x.id === id)?.name ?? "";
+            return sale.value?.products.find(x => x.id === id)?.name ?? "";
         }
 
         const getProductRemainingQuantity = (id: number) => {
-            return sale.products.find(x => x.id === id)?.remainingQuantity ?? 0;
+            return sale.value?.products.find(x => x.id === id)?.remainingQuantity ?? 0;
         }
+
+        await salesStore.refreshSaleData(Number(route.params.id));
 
         return {
             purchaseLinesWithContent,

@@ -11,8 +11,11 @@ export const useSalesStore = defineStore('sales', () => {
   }
 
   async function refreshSaleData(id: number) {
-    const sale = await getSale(id);
-    return sale;
+    const updatedSale = await getSale(id);
+    const saleToUpdate = sales.value.find(x => x.id === id);
+    if (saleToUpdate && updatedSale) {
+      Object.assign(saleToUpdate, updatedSale);
+    }
   }
 
   async function addSale(saleToAdd: Sale) {
