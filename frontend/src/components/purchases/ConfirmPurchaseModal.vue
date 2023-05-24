@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back to products</button>
-                    <button type="button" class="btn btn-success" v-if="isPurchaseValid"
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" v-if="isPurchaseValid"
                         v-on:click="handleConfirmPurchase">Confirm purchase</button>
                 </div>
             </div>

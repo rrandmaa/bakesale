@@ -44,14 +44,20 @@ export default {
     }, 0));
 
     const getProductPrice = (id: number) => {
-      return sale?.value?.products.find(x => x.id === id)?.price ?? 0;
+      return sale.value?.products.find(x => x.id === id)?.price ?? 0;
+    }
+
+    const getProductRemainingQuantity = (id: number) => {
+      return sale.value?.products.find(x => x.id === id)?.remainingQuantity ?? 0;
     }
 
     const incrementPurchaseLineQuantity = (index: number, productId: number) => {
       if (!purchaseLines.value[index]) {
         purchaseLines.value[index] = { quantity: 0, productId } as PurchaseLine;
       }
-      purchaseLines.value[index].quantity++;
+      if (purchaseLines.value[index].quantity < getProductRemainingQuantity(productId)) {
+        purchaseLines.value[index].quantity++;
+      }
     }
 
     const clearPurchaseLines = () => {
