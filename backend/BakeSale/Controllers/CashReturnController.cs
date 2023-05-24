@@ -9,8 +9,8 @@ namespace BakeSale.Controllers
     {
         public CashReturnController() { }
 
-        // POST: api/CashReturn
-        [HttpPost]
+        // GET: api/CashReturn?cashPaid=16&totalPrice=9
+        [HttpGet]
         public ActionResult<List<CashReturnResponseLine>> CalculateCashReturn(decimal cashPaid, decimal totalPrice)
         {
             if (cashPaid < totalPrice)
