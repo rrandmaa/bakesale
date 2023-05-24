@@ -13,6 +13,10 @@ namespace BakeSale.Controllers
         [HttpPost]
         public ActionResult<List<CashReturnResponseLine>> CalculateCashReturn(decimal cashPaid, decimal totalPrice)
         {
+            if (cashPaid < totalPrice)
+            {
+                return BadRequest();
+            }
             return EuroCashReturnCalculator.FindReturnCurrencyNotes(cashPaid - totalPrice);
         }
     }
