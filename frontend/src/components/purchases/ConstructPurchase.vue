@@ -7,9 +7,14 @@
       </div>
     </div>
   </div>
-  <span class="row fixed-bottom text-center">
-    <div class="container border bg-primary text-light">
-      {{ totalPrice.toFixed(2) }}
+  <span class="row fixed-bottom">
+    <div class="container total-price-container border bg-primary text-light text-center">
+      <div class="mt-3">
+        Total price: {{ totalPrice.toFixed(2) }} €
+      </div>
+      <br />
+      <button class="btn btn-light shadow mx-2" v-on:click="clearPurchaseLines">Reset</button>
+      <button class="btn btn-success shadow mx-2">Checkout</button>
     </div>
   </span>
 </template>
@@ -30,7 +35,7 @@ export default {
     const purchaseLines = ref<PurchaseLine[]>(new Array<PurchaseLine>(sale.products.length));
 
     const totalPrice = computed(() => purchaseLines.value.reduce((sum, line) => {
-      return sum + (line.quantity * getProductPrice(line.productId)) 
+      return sum + (line.quantity * getProductPrice(line.productId))
     }, 0));
 
     const getProductPrice = (id: number) => {
@@ -44,12 +49,23 @@ export default {
       purchaseLines.value[index].quantity++;
     }
 
+    const clearPurchaseLines = () => {
+      purchaseLines.value = new Array<PurchaseLine>(sale.products.length);
+    }
+
     return {
       sale,
       purchaseLines,
       totalPrice,
       incrementPurchaseLineQuantity,
+      clearPurchaseLines,
     };
   },
 };
 </script>
+
+<style scoped>
+.total-price-container {
+  height: 8rem;
+}
+</style>
