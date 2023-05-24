@@ -1,5 +1,5 @@
 <template>
-  <PageHeader :title="sale.name" />
+  <PageHeader :title="sale?.name ?? ''" />
   <div class="container text-center mt-5">
     <button role="button" class="btn btn-primary shadow" v-on:click="routeToNewOrder">
       Start new order
@@ -9,8 +9,8 @@
 
 <script lang="ts">
 import PageHeader from '@/components/common/PageHeader.vue';
-import type { Sale } from '@/interfaces/sale';
 import { useSalesStore } from '@/stores/sales';
+import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 export default {
@@ -22,10 +22,10 @@ export default {
     const router = useRouter();
     const salesStore = useSalesStore();
 
-    const sale: Sale = await salesStore.refreshSaleData(Number(route.params.id));
+    const sale = computed(() => salesStore.sales.find(x => x.id === Number(route.params.id)));;
 
     const routeToNewOrder = () => {
-      router.push(`/sale/${sale.id}/neworder`);
+      router.push(`/sale/${sale.value?.id}/neworder`);
     };
 
     return {

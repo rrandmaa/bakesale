@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div v-if="!isPurchaseValid()" class="alert alert-danger" role="alert">
+                    <div v-if="!isPurchaseValid" class="alert alert-danger" role="alert">
                         Some products appear to have run out of stock!
                     </div>
                     <table class="table table-bordered table-responsive mt-2">
@@ -30,7 +30,8 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back to products</button>
-                    <button type="button" class="btn btn-success">Confirm purchase</button>
+                    <button type="button" class="btn btn-success" v-if="isPurchaseValid"
+                        v-on:click="handleConfirmPurchase">Confirm purchase</button>
                 </div>
             </div>
         </div>
@@ -38,10 +39,11 @@
 </template>
 
 <script lang="ts">
-import type { PurchaseLine } from '@/interfaces/purchase';
+import { postPurchase } from '@/api/purchases.api';
+import type { Purchase, PurchaseLine } from '@/interfaces/purchase';
 import { useSalesStore } from '@/stores/sales';
 import { computed, type PropType } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
     props: {
@@ -56,14 +58,13 @@ export default {
     },
     async setup(props) {
         const route = useRoute();
+        const router = useRouter();
         const salesStore = useSalesStore();
         const sale = computed(() => salesStore.sales.find(x => x.id === Number(route.params.id)));
 
         const purchaseLinesWithContent = computed<PurchaseLine[]>(() => props.purchaseLines.filter(x => x.productId));
 
-        const isPurchaseValid = () => {
-            return props.purchaseLines.every(x => isPurchaseLineValid(x));
-        }
+        const isPurchaseValid = computed(() => purchaseLinesWithContent.value.every(x => isPurchaseLineValid(x)));
 
         const isPurchaseLineValid = (line: PurchaseLine) => {
             return getProductRemainingQuantity(line.productId) >= line.quantity;
@@ -77,7 +78,13 @@ export default {
             return sale.value?.products.find(x => x.id === id)?.remainingQuantity ?? 0;
         }
 
-        await salesStore.refreshSaleData(Number(route.params.id));
+        const handleConfirmPurchase = async () => {
+            if (!isPurchaseValid.value) return;
+
+            await postPurchase({ purchaseLines: purchaseLinesWithContent.value } as Purchase);
+
+            router.push(`/sale/${route.params.id}`);
+        }
 
         return {
             purchaseLinesWithContent,
@@ -85,6 +92,7 @@ export default {
             isPurchaseLineValid,
             getProductName,
             getProductRemainingQuantity,
+            handleConfirmPurchase,
         }
     }
 }
