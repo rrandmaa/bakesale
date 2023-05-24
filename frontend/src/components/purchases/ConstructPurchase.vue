@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container product-cards-container mt-4">
     <div class="row row-cols-auto justify-content-center">
       <div v-for="(product, i) in sale.products" v-bind:key="i" class="col">
         <ProductCard :product="product" :purchase-line="purchaseLines[i]"
@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style scoped>
+.product-cards-container {
+  margin-bottom: 8rem;
+}
 .total-price-container {
   height: 8rem;
 }
