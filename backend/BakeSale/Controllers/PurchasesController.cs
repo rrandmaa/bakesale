@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BakeSale.Models;
 using BakeSale.Repositories;
-using BakeSale.Models.Enums;
-using System.Data;
 
 namespace BakeSale.Controllers
 {
@@ -56,43 +54,9 @@ namespace BakeSale.Controllers
                 return BadRequest();
             }
 
-            purchase.Status = PurchaseStatus.Pending;
-
             await _purchasesRepo.PostAsync(purchase);
 
             return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
-        }
-
-        // POST: api/Purchases/5/confirm
-        [HttpPost("{id}/Confirm")]
-        public async Task<ActionResult> ConfirmPurchase(int id)
-        {
-            try
-            {
-                await _purchasesRepo.ConfirmPurchase(id);
-            } 
-            catch (DataException)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
-        }
-
-        // POST: api/Purchases/5/cancel
-        [HttpPost("{id}/Cancel")]
-        public async Task<ActionResult> CancelPurchase(int id)
-        {
-            try
-            {
-                await _purchasesRepo.CancelPurchase(id);
-            }
-            catch (DataException)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
         }
     }
 }

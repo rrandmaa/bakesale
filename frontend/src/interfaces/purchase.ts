@@ -1,8 +1,3 @@
-export enum PurchaseStatus {
-    Pending,
-    Completed
-}
-
 export interface PurchaseLine {
     id: number;
     purchaseId: number;
@@ -12,6 +7,5 @@ export interface PurchaseLine {
 
 export interface Purchase {
     id: number;
-    status: PurchaseStatus;
     purchaseLines: PurchaseLine[];
 }

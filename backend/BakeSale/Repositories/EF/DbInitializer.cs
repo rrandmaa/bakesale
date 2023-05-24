@@ -76,7 +76,6 @@ namespace BakeSale.Repositories.Common
                 new Purchase
                 {
                     Id = 1,
-                    Status = PurchaseStatus.Completed,
                 }
             );
 
