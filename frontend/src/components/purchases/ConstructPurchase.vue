@@ -14,9 +14,10 @@
       </div>
       <br />
       <button class="btn btn-light shadow mx-2" v-on:click="clearPurchaseLines">Reset</button>
-      <button class="btn btn-success shadow mx-2">Checkout</button>
+      <button class="btn btn-success shadow mx-2" data-bs-toggle="modal" :data-bs-target="`#${MODAL_TAG_ID}`">Checkout</button>
     </div>
   </span>
+  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines"/>
 </template>
 
 <script lang="ts">
@@ -25,15 +26,18 @@ import { useRoute } from 'vue-router';
 import ProductCard from '../products/ProductCard.vue';
 import type { PurchaseLine } from '@/interfaces/purchase';
 import { computed, ref } from 'vue';
+import ConfirmPurchaseModal from './ConfirmPurchaseModal.vue';
 
 export default {
-  components: { ProductCard },
+  components: { ProductCard, ConfirmPurchaseModal },
   async setup() {
+    const MODAL_TAG_ID = "confirmModal";
+
     const route = useRoute();
     const salesStore = useSalesStore();
     const sale = await salesStore.refreshSaleData(Number(route.params.id));
     const purchaseLines = ref<PurchaseLine[]>(new Array<PurchaseLine>(sale.products.length));
-
+    
     const totalPrice = computed(() => purchaseLines.value.reduce((sum, line) => {
       return sum + (line.quantity * getProductPrice(line.productId))
     }, 0));
@@ -54,6 +58,7 @@ export default {
     }
 
     return {
+      MODAL_TAG_ID,
       sale,
       purchaseLines,
       totalPrice,
@@ -68,6 +73,7 @@ export default {
 .product-cards-container {
   margin-bottom: 8rem;
 }
+
 .total-price-container {
   height: 8rem;
 }
