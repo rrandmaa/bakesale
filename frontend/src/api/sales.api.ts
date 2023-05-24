@@ -1,14 +1,14 @@
 import type { Sale } from '@/interfaces/sale';
-import { getAll, get, post } from './api';
+import { get, getById, post } from './api';
 
 const SALES_PATH = 'Sales';
 
 export const getSales = async (): Promise<Sale[]> => {
-  return await getAll<Sale>(SALES_PATH);
+  return await get<Sale>(SALES_PATH);
 };
 
 export const getSale = async (id: number): Promise<Sale> => {
-  return await get<Sale>(SALES_PATH, id);
+  return await getById<Sale>(SALES_PATH, id);
 };
 
 export const postSale = async (sale: Sale): Promise<Sale> => {

@@ -1,12 +1,12 @@
 const BASE_URL = 'http://localhost:8080/api/';
 
-export const getAll = async <T>(path: string): Promise<T[]> => {
+export const get = async <T>(path: string): Promise<T[]> => {
   const response = await fetch(BASE_URL + path);
   const data = await response.json();
   return data;
 };
 
-export const get = async <T>(path: string, id: number): Promise<T> => {
+export const getById = async <T>(path: string, id: number): Promise<T> => {
   const response = await fetch(BASE_URL + path + '/' + id);
   const data = await response.json();
   return data;
