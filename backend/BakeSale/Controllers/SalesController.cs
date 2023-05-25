@@ -9,20 +9,18 @@ namespace BakeSale.Controllers
     [ApiController]
     public class SalesController : ControllerBase
     {
-        private readonly ISalesRepository _salesRepo;
-        private readonly IPurchasesRepository _puchasesRepo;
+        private readonly ISalesRepository _repo;
 
-        public SalesController(ISalesRepository salesRepo, IPurchasesRepository purchasesRepo)
+        public SalesController(ISalesRepository repo)
         {
-            _salesRepo = salesRepo;
-            _puchasesRepo = purchasesRepo;
+            _repo = repo;
         }
 
         // GET: api/Sales
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSales()
         {
-            var sales = await _salesRepo.GetAllAsync();
+            var sales = await _repo.GetAllAsync();
 
             if (sales is null)
             {
@@ -36,7 +34,7 @@ namespace BakeSale.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
-            var sale = await _salesRepo.GetAsync(id);
+            var sale = await _repo.GetAsync(id);
 
             if (sale is null)
             {
@@ -50,7 +48,7 @@ namespace BakeSale.Controllers
         [HttpPost]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         { 
-            await _salesRepo.PostAsync(sale);
+            await _repo.PostAsync(sale);
 
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
         }
@@ -61,7 +59,7 @@ namespace BakeSale.Controllers
         {
             try
             {
-                await _salesRepo.FinishSale(id);
+                await _repo.FinishSale(id);
             }
             catch (DataException)
             {
@@ -69,25 +67,6 @@ namespace BakeSale.Controllers
             }
 
             return Ok();
-        }
-
-        // GET: api/Sales/5/Purchases
-        [HttpGet("{id}/Purchases")]
-        public async Task<ActionResult<IEnumerable<Purchase>>> GetSalePurchases(int id)
-        {
-            if (!_salesRepo.EntityExists(id))
-            {
-                return BadRequest();
-            }
-
-            var purchases = await _puchasesRepo.GetBySaleIdAsync(id);
-
-            if (purchases is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(purchases);
         }
     }
 }

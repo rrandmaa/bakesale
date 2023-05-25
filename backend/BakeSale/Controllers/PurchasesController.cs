@@ -4,37 +4,47 @@ using BakeSale.Repositories;
 
 namespace BakeSale.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/{saleId}/[controller]")]
     [ApiController]
     public class PurchasesController : ControllerBase
     {
         private readonly IPurchasesRepository _purchasesRepo;
-        private readonly IProductsRepository _productsRepo;
+        private readonly ISalesRepository _salesRepo;
 
-        public PurchasesController(IPurchasesRepository purchasesRepo, IProductsRepository productsRepo)
+        public PurchasesController(IPurchasesRepository purchasesRepo, ISalesRepository salesRepo)
         {
             _purchasesRepo = purchasesRepo;
-            _productsRepo = productsRepo;
+            _salesRepo = salesRepo;
         }
 
-        // GET: api/Purchases
+        // GET: api/Sales/5/Purchases
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchases()
+        public async Task<ActionResult<IEnumerable<Purchase>>> GetSalePurchases(int saleId)
         {
-            var products = await _purchasesRepo.GetAllAsync();
+            if (!_salesRepo.EntityExists(saleId))
+            {
+                return BadRequest();
+            }
 
-            if (products is null)
+            var purchases = await _purchasesRepo.GetBySaleIdAsync(saleId);
+
+            if (purchases is null)
             {
                 return NotFound();
             }
 
-            return Ok(products);
+            return Ok(purchases);
         }
 
-        // GET: api/Purchases/5
+        // GET: api/Sales/5/Purchases/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Purchase>> GetPurchase(int id)
+        public async Task<ActionResult<Purchase>> GetSalePurchase(int saleId, int id)
         {
+            if (!_salesRepo.EntityExists(saleId))
+            {
+                return BadRequest();
+            }
+
             var purchase = await _purchasesRepo.GetAsync(id);
 
             if (purchase is null)
@@ -45,18 +55,27 @@ namespace BakeSale.Controllers
             return purchase;
         }
 
-        // POST: api/Purchases
+        // POST: api/Sales/5/Purchases
         [HttpPost]
-        public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
+        public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase, int saleId)
         {
-            if (purchase.PurchaseLines.Any(x => !_productsRepo.EntityExists(x.ProductId)))
+            var sale = await _salesRepo.GetAsync(saleId);
+
+            if (sale is null)
             {
                 return BadRequest();
             }
 
+            if (!sale.ValidatePurchase(purchase))
+            {
+                return BadRequest();
+            }
+
+            purchase.SaleId = sale.Id;
+
             await _purchasesRepo.PostAsync(purchase);
 
-            return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
+            return CreatedAtAction("GetPurchase", new { saleId = sale.Id, id = purchase.Id }, purchase);
         }
     }
 }
