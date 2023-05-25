@@ -19,7 +19,7 @@ namespace BakeSale.Controllers
 
         // GET: api/Sales/5/Purchases
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Purchase>>> GetSalePurchases(int saleId)
+        public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchases(int saleId)
         {
             if (!_salesRepo.EntityExists(saleId))
             {
@@ -38,7 +38,7 @@ namespace BakeSale.Controllers
 
         // GET: api/Sales/5/Purchases/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Purchase>> GetSalePurchase(int saleId, int id)
+        public async Task<ActionResult<Purchase>> GetPurchase(int saleId, int id)
         {
             if (!_salesRepo.EntityExists(saleId))
             {
