@@ -26,7 +26,6 @@ else
 // Add repositories for dependency injection
 
 builder.Services.AddScoped<ISalesRepository, SalesRepository>();
-builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<IPurchasesRepository, PurchasesRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
