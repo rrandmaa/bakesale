@@ -5,7 +5,7 @@
     </div>
     <div class="card-body cstm-secondary-light text-center">
       <p>{{ SaleStatus[sale?.status] }}</p>
-      <a href="" v-on:click="routeToSaleHome">Go to sale</a>
+      <a role="button" class="link-primary" v-on:click="routeToSaleHome">Go to sale</a>
     </div>
   </div>
 </template>
