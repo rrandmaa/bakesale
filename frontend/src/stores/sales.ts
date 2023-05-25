@@ -1,21 +1,20 @@
 import { getSale, getSales, postSale } from '@/api/sales.api';
 import type { Sale } from '@/interfaces/sale';
 import { defineStore } from 'pinia';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 export const useSalesStore = defineStore('sales', () => {
   const sales = ref<Sale[]>([]);
+  const sale = ref<Sale>();
+
+  const saleProducts = computed(() => sale.value?.products);
 
   async function fetchSales() {
     sales.value = await getSales();
   }
 
-  async function refreshSaleData(id: number) {
-    const updatedSale = await getSale(id);
-    const saleToUpdate = sales.value.find(x => x.id === id);
-    if (saleToUpdate && updatedSale) {
-      Object.assign(saleToUpdate, updatedSale);
-    }
+  async function fetchSale(id: number) {
+    sale.value = await getSale(id);
   }
 
   async function addSale(saleToAdd: Sale) {
@@ -24,7 +23,11 @@ export const useSalesStore = defineStore('sales', () => {
     return newSale;
   }
 
+  function getSaleProduct(id: number) {
+    return saleProducts.value?.find(x => x.id === id);
+  }
+
   onMounted(async () => await fetchSales());
 
-  return { sales, refreshSaleData, addSale };
+  return { sales, sale, saleProducts, fetchSale, addSale, getSaleProduct };
 });
