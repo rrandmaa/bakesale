@@ -76,6 +76,7 @@ namespace BakeSale.Repositories.Common
                 new Purchase
                 {
                     Id = 1,
+                    SaleId = 1,
                 }
             );
 

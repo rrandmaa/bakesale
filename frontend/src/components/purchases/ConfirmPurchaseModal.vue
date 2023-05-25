@@ -34,7 +34,7 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr v-for="(cashReturnLine, i) in cashReturn" v-bind:key="i">
-                                    <td>{{ cashReturnLine.value }} €</td>
+                                    <td>{{ cashReturnLine.value.toFixed(2) }} €</td>
                                     <td>{{ cashReturnLine.count }}</td>
                                 </tr>
                             </tbody>
