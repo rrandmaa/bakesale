@@ -22,7 +22,7 @@ export default {
     const router = useRouter();
     const salesStore = useSalesStore();
 
-    const sale = computed(() => salesStore.sales.find(x => x.id === Number(route.params.id)));;
+    const sale = computed(() => salesStore.sales.find((x) => x.id === Number(route.params.id)));
 
     const routeToNewOrder = () => {
       router.push(`/sale/${sale.value?.id}/neworder`);

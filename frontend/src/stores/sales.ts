@@ -1,4 +1,5 @@
 import { getSale, getSales, postSale } from '@/api/sales.api';
+import type { PurchaseLine } from '@/interfaces/purchase';
 import type { Sale } from '@/interfaces/sale';
 import { defineStore } from 'pinia';
 import { computed, onMounted, ref } from 'vue';
@@ -24,10 +25,16 @@ export const useSalesStore = defineStore('sales', () => {
   }
 
   function getSaleProduct(id: number) {
-    return saleProducts.value?.find(x => x.id === id);
+    return saleProducts.value?.find((x) => x.id === id);
+  }
+
+  function isPurchaseValidForSale(purchaseLines: PurchaseLine[]) {
+    return purchaseLines.every(
+      (line) => (getSaleProduct(line.productId)?.remainingQuantity ?? 0) >= line.quantity
+    );
   }
 
   onMounted(async () => await fetchSales());
 
-  return { sales, sale, saleProducts, fetchSale, addSale, getSaleProduct };
+  return { sales, sale, saleProducts, fetchSale, addSale, getSaleProduct, isPurchaseValidForSale };
 });

@@ -1,4 +1,4 @@
 export interface CashReturnResponseLine {
-    value: number;
-    count: number;
+  value: number;
+  count: number;
 }
