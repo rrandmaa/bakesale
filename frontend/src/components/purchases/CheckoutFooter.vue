@@ -21,6 +21,7 @@ import { useSalesStore } from '@/stores/sales';
 
 export default {
     components: { ConfirmPurchaseModal },
+    emits: ['resetButtonClick', 'checkoutButtonClick'],
     props: {
         purchaseLines: {
             type: Object as PropType<PurchaseLine[]>,

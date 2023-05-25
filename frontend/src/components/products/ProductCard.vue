@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow mb-3" role="button" v-on:click="$emit('increment')">
+  <div class="card shadow mb-3" role="button" v-on:click="$emit('update:purchaseLine', updatedPurchaseLine)">
     <div class="card-header cstm-primary-light text-center">
       <h3>{{ product?.name }}</h3>
       <p>Selected: {{ purchaseLine?.quantity ?? 0 }}</p>
@@ -14,7 +14,7 @@
 <script lang="ts">
 import type { Product } from '@/interfaces/product';
 import type { PurchaseLine } from '@/interfaces/purchase';
-import { type PropType } from 'vue';
+import { computed, type PropType } from 'vue';
 
 export default {
   props: {
@@ -24,6 +24,23 @@ export default {
     },
     purchaseLine: Object as PropType<PurchaseLine>
   },
+  setup(props) {
+    const updatedPurchaseLine = computed(() => {
+      let purchaseLine = props.purchaseLine;
+
+      if (!purchaseLine) {
+        purchaseLine = { quantity: 0, productId: props.product.id } as PurchaseLine
+      }
+
+      if (purchaseLine.quantity < props.product.remainingQuantity) {
+        return { ...purchaseLine, quantity: purchaseLine.quantity + 1 } as PurchaseLine
+      }
+
+      return purchaseLine;
+    });
+
+    return { updatedPurchaseLine }
+  }
 };
 </script>
   

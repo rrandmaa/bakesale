@@ -2,15 +2,17 @@
   <div class="container product-cards-container mt-4">
     <div class="row row-cols-auto justify-content-center">
       <div v-for="(product, i) in salesStore.saleProducts" v-bind:key="i" class="col">
-        <ProductCard :product="product" :purchase-line="purchaseLines[i]"
-          v-on:increment="() => incrementPurchaseLineQuantity(i, product.id)" />
+        <ProductCard 
+          :product="product" 
+          v-model:purchase-line="purchaseLines[i]" 
+        />
       </div>
     </div>
   </div>
   <CheckoutFooter 
     :purchase-lines="purchaseLines"
     v-on:resetButtonClick="clearPurchaseLines"
-    v-on:checkoutButtonClick="fetchSaleData"
+    v-on:checkoutButtonClick="async () => await salesStore.fetchSale(Number(route.params.id))"
   />
 </template>
 
@@ -29,35 +31,15 @@ export default {
     const salesStore = useSalesStore();
     const purchaseLines = ref<PurchaseLine[]>(new Array<PurchaseLine>(salesStore.saleProducts?.length ?? 0));
 
-    const getProductRemainingQuantity = (id: number) => {
-      return salesStore.getSaleProduct(id)?.remainingQuantity ?? 0;
-    }
-
-    const incrementPurchaseLineQuantity = (index: number, productId: number) => {
-      if (!purchaseLines.value[index]) {
-        purchaseLines.value[index] = { quantity: 0, productId } as PurchaseLine;
-      }
-      if (purchaseLines.value[index].quantity < getProductRemainingQuantity(productId)) {
-        purchaseLines.value[index].quantity++;
-      }
-    }
-
-    const clearPurchaseLines = () => {
-      purchaseLines.value = new Array<PurchaseLine>(salesStore.sale?.products.length ?? 0);
-    }
-
-    const fetchSaleData = async () => {
-      await salesStore.fetchSale(Number(route.params.id));
-    }
+    const clearPurchaseLines = () => purchaseLines.value = new Array<PurchaseLine>(salesStore.sale?.products.length ?? 0);
 
     await salesStore.fetchSale(Number(route.params.id));
 
     return {
+      route,
       salesStore,
       purchaseLines,
-      incrementPurchaseLineQuantity,
       clearPurchaseLines,
-      fetchSaleData,
     };
   },
 };
