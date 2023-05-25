@@ -4,7 +4,7 @@ using BakeSale.Repositories;
 
 namespace BakeSale.Controllers
 {
-    [Route("api/{saleId}/[controller]")]
+    [Route("api/Sales/{saleId}/[controller]")]
     [ApiController]
     public class PurchasesController : ControllerBase
     {

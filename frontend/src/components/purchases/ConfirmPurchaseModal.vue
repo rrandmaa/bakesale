@@ -135,7 +135,7 @@ export default {
         const confirmPurchase = async () => {
             if (!purchaseIsValid.value) return;
 
-            await postPurchase({ purchaseLines: purchaseLinesWithContent.value } as Purchase);
+            await postPurchase(Number(route.params.id), { purchaseLines: purchaseLinesWithContent.value } as Purchase);
 
             router.push(`/sale/${route.params.id}`);
         }
