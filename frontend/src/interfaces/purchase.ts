@@ -7,5 +7,6 @@ export interface PurchaseLine {
 
 export interface Purchase {
   id: number;
+  saleId: number;
   purchaseLines: PurchaseLine[];
 }
