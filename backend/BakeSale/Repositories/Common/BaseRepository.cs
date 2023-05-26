@@ -31,7 +31,9 @@ namespace BakeSale.Repositories.Common
         }
         public async Task UpdateAsync(T entity)
         {
-            dbSet.Update(entity);
+            await DeleteAsync(entity.Id);
+
+            dbSet.Add(entity);
 
             await _context.SaveChangesAsync();
         }

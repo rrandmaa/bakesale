@@ -1,5 +1,6 @@
 ﻿using BakeSale.Models;
 using BakeSale.Repositories;
+using BakeSale.Repositories.Common;
 
 namespace Tests.Repositories
 {
@@ -10,6 +11,12 @@ namespace Tests.Repositories
         public SalesRepositoryTests() : base()
         {
             _repo = new SalesRepository(_context);
+        }
+
+        [TestMethod] public void InheritanceTests()
+        {
+            Assert.IsInstanceOfType(_repo, typeof(BaseRepository<Sale>));
+            Assert.IsInstanceOfType(_repo, typeof(ISalesRepository));
         }
 
         [TestMethod] public async Task GetAllAsyncTest()

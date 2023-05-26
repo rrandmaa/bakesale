@@ -5,12 +5,13 @@ namespace Tests
 {
     public static class TestDataHelper
     {
+        private static IEnumerator<int> IdEnumerator = Enumerable.Range(0, int.MaxValue).GetEnumerator();
         public static List<Sale> GetTestSaleData()
         {
             List<Sale> sales = new()
             {
-                new Sale() { Name = "Sale 1", Status = SaleStatus.Active },
-                new Sale() { Name = "Sale 2", Status = SaleStatus.Finished },
+                NewSale(),
+                NewSale(),
             };
 
             foreach (Sale sale in sales)
@@ -30,21 +31,48 @@ namespace Tests
         {
             return new()
             {
-                new Product() { Name = "Product 1", InitialQuantity = 10, Price = 10, SaleId = saleId },
-                new Product() { Name = "Product 2", InitialQuantity = 10, Price = 10, SaleId = saleId },
-                new Product() { Name = "Product 3", InitialQuantity = 10, Price = 10, SaleId = saleId },
-                new Product() { Name = "Product 4", InitialQuantity = 10, Price = 10, SaleId = saleId },
+                NewProduct(saleId),
+                NewProduct(saleId),
+                NewProduct(saleId),
+                NewProduct(saleId),
             };
+        }
+
+        public static List<Purchase> GetTestPurchaseData(int saleId)
+        {
+            List<Purchase> purchases = new()
+            {
+                NewPurchase(saleId),
+                NewPurchase(saleId),
+                NewPurchase(saleId),
+            };
+
+            foreach (var purchase in purchases)
+            {
+                purchase.PurchaseLines = GetTestPurchaseLineData(purchase.Id, 0);
+            }
+
+            return purchases;
         }
 
         public static List<PurchaseLine> GetTestPurchaseLineData(int purchaseId, int productId)
         {
             return new()
             {
-                new PurchaseLine() { ProductId = productId, PurchaseId = purchaseId, Quantity = 1 },
-                new PurchaseLine() { ProductId = productId, PurchaseId = purchaseId, Quantity = 1 },
-                new PurchaseLine() { ProductId = productId, PurchaseId = purchaseId, Quantity = 1 },
+                NewPurchaseLine(purchaseId, productId),
+                NewPurchaseLine(purchaseId, productId),
+                NewPurchaseLine(purchaseId, productId),
             };
+        }
+        public static Sale NewSale() => new() { Id = GetId(), Name = "Sale X" };
+        public static Product NewProduct(int saleId) => new() { Id = GetId(), Name = "Product X", InitialQuantity = 10, Price = 10, SaleId = saleId };
+        public static Purchase NewPurchase(int saleId) => new() { Id = GetId(), SaleId = saleId };
+        public static PurchaseLine NewPurchaseLine(int purchaseId, int productId) 
+            => new() { Id = GetId(), ProductId = productId, PurchaseId = purchaseId, Quantity = 1 };
+        public static int GetId()
+        {
+            IdEnumerator.MoveNext();
+            return IdEnumerator.Current;
         }
     }
 }
