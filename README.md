@@ -53,3 +53,4 @@ Here, I'll leave a list of things I consider as too out-of-scope for this trial 
 - *Cypress* E2E tests for the frontend
 - Sale home page should have a list of purchases with useful data like purchase date-time and total purchase price
 - Images should ideally be stored in the database as blobs, the current solution with paths to frontend assets is a quick-and-easy one
+- Authorization and authentication
