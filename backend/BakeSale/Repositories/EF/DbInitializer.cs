@@ -15,6 +15,8 @@ namespace BakeSale.Repositories.Common
 
         public void Seed()
         {
+            // Use this method when initializing data in development
+            /*
             _modelBuilder.Entity<Sale>().HasData(
                 new Sale
                 {
@@ -96,6 +98,7 @@ namespace BakeSale.Repositories.Common
                     Quantity = 12,
                 }
             );
+            */
         }
     }
 }
