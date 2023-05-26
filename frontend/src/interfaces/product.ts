@@ -11,4 +11,5 @@ export interface Product {
   initialQuantity: number;
   price: number;
   remainingQuantity: number;
+  imagePath: string;
 }

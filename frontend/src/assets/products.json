@@ -3,54 +3,63 @@
     "type": 0,
     "name": "Brownie",
     "initialQuantity": 48,
-    "price": 0.65
+    "price": 0.65,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 0,
     "name": "Muffin",
     "initialQuantity": 36,
-    "price": 1.0
+    "price": 1.0,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 0,
     "name": "Cake Pop",
     "initialQuantity": 24,
-    "price": 1.35
+    "price": 1.35,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 0,
     "name": "Apple Tart",
     "initialQuantity": 60,
-    "price": 1.5
+    "price": 1.5,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 0,
     "name": "Water",
     "initialQuantity": 60,
-    "price": 1.5
+    "price": 1.5,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 1,
     "name": "Shirt",
     "initialQuantity": null,
-    "price": 2.0
+    "price": 2.0,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 1,
     "name": "Pants",
     "initialQuantity": null,
-    "price": 3.0
+    "price": 3.0,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 1,
     "name": "Jacket",
     "initialQuantity": null,
-    "price": 4.0
+    "price": 4.0,
+    "imagePath": "/src/assets/images/brownie.jpg"
   },
   {
     "type": 1,
     "name": "Toy",
     "initialQuantity": null,
-    "price": 1.0
+    "price": 1.0,
+    "imagePath": "/src/assets/images/brownie.jpg"
   }
 ]

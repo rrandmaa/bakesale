@@ -5,6 +5,7 @@
     v-on:click="$emit('update:purchaseLine', updatedPurchaseLine)"
   >
     <div class="card-header cstm-primary-light text-center">
+      <img class="img-fluid rounded shadow mb-1" :src="product?.imagePath" />
       <h3>{{ product?.name }}</h3>
       <p>Selected: {{ purchaseLine?.quantity ?? 0 }}</p>
     </div>
@@ -50,15 +51,16 @@ export default {
 
 <style scoped>
 .card {
-  min-height: 9rem;
+  min-height: 18rem;
   width: 15.5rem;
 }
-
 .card-header {
-  height: 5rem;
+  height: 14rem;
 }
-
 .card-body {
   border-radius: 5%;
+}
+.product-img {
+
 }
 </style>

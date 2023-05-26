@@ -1,5 +1,5 @@
 <template>
-  <form class="container-fluid mt-4" v-on:submit.prevent="submitAddSaleForm">
+  <form class="container-fluid my-4" v-on:submit.prevent="submitAddSaleForm">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label text-nowrap" for="saleName">Sale name</label>
       <div class="col-sm-10">

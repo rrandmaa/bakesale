@@ -3,24 +3,18 @@
     <div class="container total-price-container border bg-primary text-light text-center">
       <div class="mt-3">Total price: {{ totalPrice.toFixed(2) }} €</div>
       <br />
-      <button class="btn btn-light shadow mx-2" v-on:click="$emit('resetButtonClick')">
-        Reset
-      </button>
-      <button
-        class="btn btn-success shadow mx-2"
-        data-bs-toggle="modal"
-        :data-bs-target="`#${MODAL_TAG_ID}`"
-        v-on:click="$emit('checkoutButtonClick')"
-      >
-        Checkout
-      </button>
+      <div class="mb-3">
+        <button class="btn btn-light shadow mx-2" v-on:click="$emit('resetButtonClick')">
+          Reset
+        </button>
+        <button class="btn btn-success shadow mx-2" data-bs-toggle="modal" :data-bs-target="`#${MODAL_TAG_ID}`"
+          v-on:click="$emit('checkoutButtonClick')">
+          Checkout
+        </button>
+      </div>
     </div>
   </span>
-  <ConfirmPurchaseModal
-    :tag-id="MODAL_TAG_ID"
-    :purchase-lines="purchaseLines"
-    :total-price="totalPrice"
-  />
+  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines" :total-price="totalPrice" />
 </template>
 
 <script lang="ts">
