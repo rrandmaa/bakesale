@@ -66,9 +66,13 @@ namespace Tests
         }
         public static Sale NewSale() => new() { Id = GetId(), Name = "Sale X" };
         public static Product NewProduct(int saleId) => new() { Id = GetId(), Name = "Product X", InitialQuantity = 10, Price = 10, SaleId = saleId };
+        public static Product NewProduct(int saleId, int initialQuantity) 
+            => new() { Id = GetId(), Name = "Product X", InitialQuantity = initialQuantity, Price = 10, SaleId = saleId };
         public static Purchase NewPurchase(int saleId) => new() { Id = GetId(), SaleId = saleId };
         public static PurchaseLine NewPurchaseLine(int purchaseId, int productId) 
             => new() { Id = GetId(), ProductId = productId, PurchaseId = purchaseId, Quantity = 1 };
+        public static PurchaseLine NewPurchaseLine(int purchaseId, int productId, int quantity)
+            => new() { Id = GetId(), ProductId = productId, PurchaseId = purchaseId, Quantity = quantity };
         public static int GetId()
         {
             IdEnumerator.MoveNext();
