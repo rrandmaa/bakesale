@@ -1,6 +1,7 @@
 using BakeSale.Repositories;
 using BakeSale.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 const string AllowAllOrigins = "_allowAllorigins";
 
@@ -30,7 +31,11 @@ builder.Services.AddScoped<IPurchasesRepository, PurchasesRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+        $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+}); ;
 
 // Add a CORS policy
 
