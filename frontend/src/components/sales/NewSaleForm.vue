@@ -63,7 +63,7 @@ export default {
       try {
         await salesStore.addSale(saleToAdd);
       } catch {
-        alert("Something went wrong when trying to register a new sale!");
+        alert('Something went wrong when trying to register a new sale!');
         return;
       }
       router.push('/');

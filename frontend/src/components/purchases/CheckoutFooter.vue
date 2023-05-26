@@ -7,14 +7,22 @@
         <button class="btn btn-light shadow mx-2" v-on:click="$emit('resetButtonClick')">
           Reset
         </button>
-        <button class="btn btn-success shadow mx-2" data-bs-toggle="modal" :data-bs-target="`#${MODAL_TAG_ID}`"
-          v-on:click="$emit('checkoutButtonClick')">
+        <button
+          class="btn btn-success shadow mx-2"
+          data-bs-toggle="modal"
+          :data-bs-target="`#${MODAL_TAG_ID}`"
+          v-on:click="$emit('checkoutButtonClick')"
+        >
           Checkout
         </button>
       </div>
     </div>
   </span>
-  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines" :total-price="totalPrice"/>
+  <ConfirmPurchaseModal
+    :tag-id="MODAL_TAG_ID"
+    :purchase-lines="purchaseLines"
+    :total-price="totalPrice"
+  />
 </template>
 
 <script lang="ts">

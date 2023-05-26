@@ -12,8 +12,13 @@
     </template>
     <template v-slot:footer>
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back to products</button>
-      <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-        v-if="purchaseIsValid && purchaseLinesWithContent.length > 0" v-on:click="confirmPurchase">
+      <button
+        type="button"
+        class="btn btn-success"
+        data-bs-dismiss="modal"
+        v-if="purchaseIsValid && purchaseLinesWithContent.length > 0"
+        v-on:click="confirmPurchase"
+      >
         Complete purchase
       </button>
     </template>
@@ -70,7 +75,7 @@ export default {
         } as Purchase);
       } catch {
         await salesStore.fetchSale(Number(route.params.id));
-        alert("Something ran out of stock while checking out!");
+        alert('Something ran out of stock while checking out!');
         return;
       }
 
