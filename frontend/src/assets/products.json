@@ -30,7 +30,7 @@
   {
     "type": 0,
     "name": "Water",
-    "initialQuantity": 60,
+    "initialQuantity": 30,
     "price": 1.5,
     "imagePath": "/src/assets/images/water.jpg"
   },
