@@ -3,7 +3,7 @@
     <div class="card-header cstm-primary-light text-center">
       <img class="img-thumbnail product-img rounded shadow mb-1" 
         :class="{ 'img-out-of-stock': outOfStock }"
-        :src="product?.imagePath" />
+        :src="product?.imagePath ?? '/src/assets/images/fallback.jpg'" />
       <h3>{{ product?.name }}</h3>
       <p>Selected: {{ purchaseLine?.quantity ?? 0 }}</p>
     </div>
