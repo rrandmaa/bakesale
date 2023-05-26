@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="card shadow mb-3"
-    role="button"
-    v-on:click="$emit('update:purchaseLine', updatedPurchaseLine)"
-  >
+  <div class="card shadow mb-3" role="button" v-on:click="$emit('update:purchaseLine', updatedPurchaseLine)">
     <div class="card-header cstm-primary-light text-center">
-      <img class="img-fluid rounded shadow mb-1" :src="product?.imagePath" />
+      <img class="img-thumbnail product-img rounded shadow mb-1" 
+        :class="{ 'img-out-of-stock': outOfStock }"
+        :src="product?.imagePath" />
       <h3>{{ product?.name }}</h3>
       <p>Selected: {{ purchaseLine?.quantity ?? 0 }}</p>
     </div>
@@ -44,7 +42,9 @@ export default {
       return purchaseLine;
     });
 
-    return { updatedPurchaseLine };
+    const outOfStock = computed(() => props.product.remainingQuantity <= 0)
+
+    return { updatedPurchaseLine, outOfStock };
   }
 };
 </script>
@@ -61,6 +61,10 @@ export default {
   border-radius: 5%;
 }
 .product-img {
-
+  width: 13rem;
+  height: 9rem;
+}
+.img-out-of-stock {
+  filter: grayscale(100%);
 }
 </style>
