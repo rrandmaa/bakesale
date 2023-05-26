@@ -12,13 +12,8 @@
     </template>
     <template v-slot:footer>
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back to products</button>
-      <button
-        type="button"
-        class="btn btn-success"
-        data-bs-dismiss="modal"
-        v-if="purchaseIsValid && purchaseLinesWithContent.length > 0"
-        v-on:click="confirmPurchase"
-      >
+      <button type="button" class="btn btn-success" v-bind:data-bs-dismiss="{ 'modal': purchaseIsValid }"
+        v-if="purchaseIsValid && purchaseLinesWithContent.length > 0" v-on:click="confirmPurchase">
         Complete purchase
       </button>
     </template>
@@ -69,9 +64,14 @@ export default {
     const confirmPurchase = async () => {
       if (!purchaseIsValid.value) return;
 
-      await postPurchase(Number(route.params.id), {
-        purchaseLines: purchaseLinesWithContent.value
-      } as Purchase);
+      try {
+        await postPurchase(Number(route.params.id), {
+          purchaseLines: purchaseLinesWithContent.value
+        } as Purchase);
+      } catch {
+        await salesStore.fetchSale(Number(route.params.id))
+        return;
+      }
 
       router.push(`/sale/${route.params.id}`);
     };

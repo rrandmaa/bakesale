@@ -14,7 +14,7 @@
       </div>
     </div>
   </span>
-  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines" :total-price="totalPrice" />
+  <ConfirmPurchaseModal :tag-id="MODAL_TAG_ID" :purchase-lines="purchaseLines" :total-price="totalPrice"/>
 </template>
 
 <script lang="ts">

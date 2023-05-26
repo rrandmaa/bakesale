@@ -6,11 +6,8 @@
       </div>
     </div>
   </div>
-  <CheckoutFooter
-    :purchase-lines="purchaseLines"
-    v-on:resetButtonClick="clearPurchaseLines"
-    v-on:checkoutButtonClick="async () => await salesStore.fetchSale(Number(route.params.id))"
-  />
+  <CheckoutFooter :purchase-lines="purchaseLines" v-on:resetButtonClick="clearPurchaseLines"
+    v-on:checkoutButtonClick="async () => await salesStore.fetchSale(Number(route.params.id))" />
 </template>
 
 <script lang="ts">
@@ -30,8 +27,7 @@ export default {
       new Array<PurchaseLine>(salesStore.saleProducts?.length ?? 0)
     );
 
-    const clearPurchaseLines = () =>
-      (purchaseLines.value = new Array<PurchaseLine>(salesStore.sale?.products.length ?? 0));
+    const clearPurchaseLines = () => purchaseLines.value = new Array<PurchaseLine>(salesStore.sale?.products.length ?? 0);
 
     await salesStore.fetchSale(Number(route.params.id));
 
