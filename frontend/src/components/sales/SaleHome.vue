@@ -1,7 +1,7 @@
 <template>
   <PageHeader :title="sale?.name ?? ''" />
   <div class="container text-center mt-5">
-    <button role="button" class="btn btn-primary shadow" v-on:click="routeToNewOrder">
+    <button role="button" class="btn btn-primary new-sale-btn shadow" v-on:click="routeToNewOrder">
       Start new order
     </button>
   </div>
@@ -35,3 +35,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.new-sale-btn {
+  min-width: 12rem;
+  min-height: 7rem;
+  font-size: x-large;
+}
+</style>
