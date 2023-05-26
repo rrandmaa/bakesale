@@ -4,14 +4,13 @@
       <h3>{{ sale?.name }}</h3>
     </div>
     <div class="card-body cstm-secondary-light text-center">
-      <p>{{ SaleStatus[sale?.status] }}</p>
       <a role="button" class="link-primary" v-on:click="routeToSaleHome">Go to sale</a>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { SaleStatus, type Sale } from '@/interfaces/sale';
+import { type Sale } from '@/interfaces/sale';
 import type { PropType } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -30,7 +29,6 @@ export default {
     };
 
     return {
-      SaleStatus,
       routeToSaleHome
     };
   }

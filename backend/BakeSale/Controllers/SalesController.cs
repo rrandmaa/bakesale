@@ -52,21 +52,5 @@ namespace BakeSale.Controllers
 
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
         }
-
-        // POST: api/Sales/5/finish
-        [HttpPost("{id}/Finish")]
-        public async Task<ActionResult> FinishSale(int id)
-        {
-            try
-            {
-                await _repo.FinishSale(id);
-            }
-            catch (DataException)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
-        }
     }
 }

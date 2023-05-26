@@ -24,15 +24,5 @@ namespace BakeSale.Repositories
                 .ThenInclude(x => x.PurchasesLines)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task FinishSale(int id)
-        {
-            Sale sale = await GetAsync(id) ?? throw new DataException();
-
-            if (sale.Status is not SaleStatus.Active) throw new DataException();
-
-            sale.Status = SaleStatus.Finished;
-
-            await UpdateAsync(sale);
-        }
     }
 }
