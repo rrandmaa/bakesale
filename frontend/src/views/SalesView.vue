@@ -6,7 +6,7 @@ import SalesContainer from '@/components/sales/SalesContainer.vue';
 
 <template>
   <Suspense>
-    <div class="container">
+    <div class="container mb-4">
       <PageHeader title="Manage Sales" />
       <SalesContainer />
       <NewSaleButton />

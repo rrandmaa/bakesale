@@ -1,5 +1,5 @@
 <template>
-  <form class="container-fluid my-4" v-on:submit.prevent="submitAddSaleForm">
+  <form class="container-fluid my-4 mb-4" v-on:submit.prevent="submitAddSaleForm">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label text-nowrap" for="saleName">Sale name:</label>
       <div class="col-sm-10">
@@ -60,7 +60,12 @@ export default {
 
     const submitAddSaleForm = async () => {
       const saleToAdd = { name: saleName.value, products: defaultProducts.value } as Sale;
-      await salesStore.addSale(saleToAdd);
+      try {
+        await salesStore.addSale(saleToAdd);
+      } catch {
+        alert("Something went wrong when trying to register a new sale!");
+        return;
+      }
       router.push('/');
     };
 
