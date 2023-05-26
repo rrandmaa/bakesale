@@ -4,7 +4,7 @@
 
 To run this project locally:
 - in the root directory of the repository, run ``docker compose up -d`` (backend, database)
-- in the /frontend directory, run ``npm run dev`` (frontend)
+- in the /frontend directory, run ``npm install``, then ``npm run dev`` (frontend)
 
 Going to the port specified by the latter command, you can see the running project.
 
