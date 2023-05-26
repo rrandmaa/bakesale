@@ -14,9 +14,9 @@ Running the backend in development mode, say, in Visual Studio, behaves a little
 
 ## Technologies used
 
-Frontend: Vue3 with Vite
-Backend: .NET6 ASP.NET Web API, Entity Framework
-Database: Postgres
+- Frontend: Vue3 with Vite
+- Backend: .NET6 ASP.NET Web API, Entity Framework
+- Database: Postgres
 
 ## About the project
 
