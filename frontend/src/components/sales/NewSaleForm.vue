@@ -29,7 +29,13 @@
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
           <td>
-            <input type="number" class="form-control" required v-model="product.initialQuantity" />
+            <input
+              type="number"
+              class="form-control"
+              min="0"
+              required
+              v-model="product.initialQuantity"
+            />
           </td>
         </tr>
       </tbody>
