@@ -31,7 +31,7 @@ The flow of using this application for running your sale goes as follows:
 - Clicking **Register sale** (or pressing enter) should land you back on the main page if everything went successfully
 - Now, seeing the new registered sale, you can click on **Go to sale**
 - From there you can **Start a new order**
-- Now you can constuct your order, following the requirements in the propmt
+- Now you can constuct your order, following the requirements in the prompt
 - Clicking **checkout** opens up a modal with a tool to calculate the cash return and a list of products in the order
 - **Complete purchase** sends the purchase to the backend and navigates you to the sale's home page, where you can start a new order
 
