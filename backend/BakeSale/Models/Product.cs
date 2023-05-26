@@ -11,6 +11,7 @@ namespace BakeSale.Models
         public int SaleId { get; set; }
         public int InitialQuantity { get; set; }
         public decimal Price { get; set; }
+        public string? ImagePath { get; set; }
         [JsonIgnore] public IEnumerable<PurchaseLine> PurchasesLines { get; set; } = new List<PurchaseLine>();
         public int RemainingQuantity => InitialQuantity - PurchasesLines.Sum(p => p.Quantity);
     }
